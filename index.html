@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyanka Patil — Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:            #0F1419;
+    --bg-panel:      #161C24;
+    --bg-panel-2:    #1C2430;
+    --line:          #2A3441;
+    --text:          #EDEEF0;
+    --text-dim:      #8B96A5;
+    --accent:        #5B8DEF;
+    --accent-soft:   rgba(91,141,239,0.12);
+    --amber:         #F2B84B;
+    --teal:          #3FBF8F;
+    --font-display:  'Space Grotesk', sans-serif;
+    --font-body:     'Inter', sans-serif;
+    --font-mono:     'JetBrains Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--accent); color:#fff; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(15,20,25,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .logo{
+    font-family:var(--font-mono); font-weight:600; font-size:15px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); }
+  .navlinks{ display:flex; gap:32px; align-items:center; }
+  .navlinks a{
+    font-size:14px; color:var(--text-dim); font-weight:500;
+    transition:color .2s;
+  }
+  .navlinks a:hover{ color:var(--text); }
+  .btn{
+    font-family:var(--font-mono); font-size:13px; font-weight:500;
+    padding:9px 16px; border-radius:6px;
+    border:1px solid var(--line);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all .2s; cursor:pointer;
+  }
+  .btn-primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .btn-primary:hover{ background:#4879db; transform:translateY(-1px); }
+  .btn-ghost{ color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 72px;
+    display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:13px; color:var(--teal);
+    display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  }
+  .eyebrow::before{ content:''; width:20px; height:1px; background:var(--teal); }
+  h1.name{
+    font-family:var(--font-display); font-size:52px; font-weight:700;
+    line-height:1.08; letter-spacing:-0.02em; margin-bottom:14px;
+  }
+  .role{
+    font-family:var(--font-mono); font-size:18px; color:var(--accent);
+    margin-bottom:22px;
+  }
+  .hero p.desc{ color:var(--text-dim); font-size:16px; max-width:460px; margin-bottom:32px; }
+  .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* code panel signature element */
+  .code-panel{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .code-panel .titlebar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px; background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .code-panel .titlebar span{ width:10px; height:10px; border-radius:50%; }
+  .titlebar .r{ background:#FF5F57; } .titlebar .y{ background:#FEBC2E; } .titlebar .g{ background:#28C840; }
+  .titlebar .filename{ margin-left:8px; font-family:var(--font-mono); font-size:12px; color:var(--text-dim); }
+  .code-panel pre{
+    padding:22px 20px; font-family:var(--font-mono); font-size:13.5px; line-height:1.9;
+    color:var(--text-dim); overflow-x:auto;
+  }
+  .code-panel .kw{ color:#C792EA; } .code-panel .fn{ color:var(--accent); }
+  .code-panel .str{ color:var(--teal); } .code-panel .tag{ color:var(--amber); }
+  .cursor{ display:inline-block; width:7px; height:16px; background:var(--accent); vertical-align:middle; animation:blink 1s step-end infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:36px; }
+  .section-num{ font-family:var(--font-mono); color:var(--accent); font-size:14px; }
+  h2{ font-family:var(--font-display); font-size:28px; font-weight:600; letter-spacing:-0.01em; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .about-grid p{ color:var(--text-dim); font-size:15.5px; margin-bottom:14px; }
+  .stat-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .stat{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; padding:20px;
+  }
+  .stat .num{ font-family:var(--font-display); font-size:30px; font-weight:700; color:var(--accent); }
+  .stat .label{ font-size:13px; color:var(--text-dim); margin-top:4px; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .skill-group{ background:var(--bg-panel); border:1px solid var(--line); border-radius:10px; padding:22px; }
+  .skill-group .g-title{ font-family:var(--font-mono); font-size:12px; color:var(--teal); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    font-family:var(--font-mono); font-size:12.5px;
+    background:var(--accent-soft); color:var(--accent);
+    border:1px solid rgba(91,141,239,0.25);
+    padding:6px 11px; border-radius:6px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
+    padding:22px; transition:transform .2s, border-color .2s;
+    display:block; text-decoration:none;
+  }
+  .card:hover{ transform:translateY(-3px); border-color:var(--accent); }
+  .card .p-tag{ font-family:var(--font-mono); font-size:11px; color:var(--amber); margin-bottom:10px; }
+  .card h3{ font-family:var(--font-display); font-size:17px; margin-bottom:8px; }
+  .card p{ font-size:13.5px; color:var(--text-dim); margin-bottom:14px; }
+  .stack{ display:flex; gap:6px; flex-wrap:wrap; }
+  .stack span{ font-family:var(--font-mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:3px 8px; border-radius:4px; }
+  .card.empty{
+    border-style:dashed; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-height:180px;
+  }
+  .card.empty .p-tag{ color:var(--text-dim); }
+  .card.empty p{ margin-bottom:0; }
+
+  /* ---------- EXPERIENCE (timeline = real sequence, ordering matters) ---------- */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .t-item{ position:relative; padding-bottom:36px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-28px; top:5px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .t-item .dates{ font-family:var(--font-mono); font-size:12.5px; color:var(--accent); margin-bottom:6px; }
+  .t-item h3{ font-family:var(--font-display); font-size:17px; margin-bottom:4px; }
+  .t-item .org{ font-size:13.5px; color:var(--text-dim); margin-bottom:10px; }
+  .t-item ul{ list-style:none; }
+  .t-item li{ font-size:14px; color:var(--text-dim); margin-bottom:6px; padding-left:16px; position:relative; }
+  .t-item li::before{ content:'→'; position:absolute; left:0; color:var(--teal); }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-item{ display:flex; justify-content:space-between; gap:20px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .edu-item:last-child{ border-bottom:none; }
+  .edu-item h3{ font-family:var(--font-display); font-size:15.5px; font-weight:500; }
+  .edu-item .sub{ font-size:13.5px; color:var(--text-dim); margin-top:3px; }
+  .edu-item .when{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-dim); white-space:nowrap; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:14px;
+    padding:44px; text-align:center;
+  }
+  .contact-panel h2{ margin-bottom:12px; }
+  .contact-panel p{ color:var(--text-dim); max-width:440px; margin:0 auto 28px; }
+  .contact-links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  footer{ padding:32px 0; text-align:center; color:var(--text-dim); font-size:12.5px; font-family:var(--font-mono); }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .cursor{ animation:none; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  @media (max-width:860px){
+    .hero{ grid-template-columns:1fr; padding-top:56px; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skill-groups{ grid-template-columns:1fr; }
+    .project-grid{ grid-template-columns:1fr; }
+    .navlinks{ display:none; }
+    h1.name{ font-size:38px; }
+  }
+
+  a.btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent); outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span>priyanka.dev</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-primary" href="Priyanka_Patil_Resume.pdf" download>↓ Resume</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="eyebrow">AVAILABLE FOR FRONTEND ROLES</div>
+      <h1 class="name">Priyanka Patil</h1>
+      <div class="role">Frontend Developer — React.js &amp; React Native</div>
+      <p class="desc">I build fast, responsive interfaces and turn designs into clean, reusable components. 8 live client websites shipped, plus cross-platform mobile apps and the APIs that power them.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#work">View my work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="code-panel">
+      <div class="titlebar">
+        <span class="r"></span><span class="y"></span><span class="g"></span>
+        <span class="filename">Developer.jsx</span>
+      </div>
+      <pre><span class="kw">function</span> <span class="fn">Developer</span>() {
+  <span class="kw">const</span> name = <span class="str">"Priyanka Patil"</span>;
+  <span class="kw">const</span> stack = [<span class="str">"React"</span>, <span class="str">"React Native"</span>,
+                 <span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"Node.js"</span>];
+  <span class="kw">const</span> location = <span class="str">"Bangalore, India"</span>;
+
+  <span class="kw">return</span> (
+    <span class="tag">&lt;Portfolio</span>
+      builds=<span class="str">{8}</span>
+      status=<span class="str">"open to work"</span>
+    <span class="tag">/&gt;</span>
+  );
+}<span class="cursor"></span></pre>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a full-stack developer based in Bangalore, focused on the frontend. Over the past two years I've moved from mobile app development in React Native to building complete web experiences — React on the front, Node.js and Java on the back, SQL underneath.</p>
+        <p>I like the details: the interface that responds instantly, the API that returns exactly what the component expects, the layout that holds up on a small screen. Currently building full-stack features at Shashwatha Groups.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">8</div><div class="label">live client websites shipped</div></div>
+        <div class="stat"><div class="num">2+</div><div class="label">years across web &amp; mobile</div></div>
+        <div class="stat"><div class="num">4</div><div class="label">languages spoken</div></div>
+        <div class="stat"><div class="num">2</div><div class="label">companies, growing fast</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="section-num">02</span><h2>Skills</h2></div>
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <div class="g-title">Web</div>
+        <div class="chips">
+          <span class="chip">React.js</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+          <span class="chip">JavaScript</span><span class="chip">RESTful APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">Mobile</div>
+        <div class="chips">
+          <span class="chip">React Native</span><span class="chip">Android Studio</span><span class="chip">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">Backend &amp; Data</div>
+        <div class="chips">
+          <span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">SQL / MySQL</span><span class="chip">DBMS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">Tools</div>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head"><span class="section-num">03</span><h2>Selected work</h2></div>
+    <div class="project-grid reveal">
+      <a class="card" href="https://cakedelightuae.com" target="_blank" rel="noopener">
+        <div class="p-tag">BAKERY · UAE</div>
+        <h3>Cake Delight</h3>
+        <p>Storefront for a handcrafted-cake bakery — menu, ordering info, and brand imagery built to feel fresh and inviting.</p>
+        <div class="stack"><span>React</span><span>HTML/CSS</span></div>
+      </a>
+      <a class="card" href="https://crystalwingsdxb.com" target="_blank" rel="noopener">
+        <div class="p-tag">AVIATION · DUBAI</div>
+        <h3>Crystal Wings</h3>
+        <p>Private jet charter &amp; aviation investment site — fleet, services, and a booking/quote flow for a Dubai firm.</p>
+        <div class="stack"><span>React</span><span>HTML/CSS</span></div>
+      </a>
+      <a class="card" href="https://ssllightings.com" target="_blank" rel="noopener">
+        <div class="p-tag">LIGHTING</div>
+        <h3>SSL Lighting Solutions</h3>
+        <p>Company site for a lighting solutions provider, presenting products and services to commercial clients.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span></div>
+      </a>
+      <a class="card" href="https://kidznkidzzilla.com" target="_blank" rel="noopener">
+        <div class="p-tag">DAYCARE · BENGALURU</div>
+        <h3>Kidz 'n' Kidzzilla</h3>
+        <p>Playzone &amp; daycare site with birthday packages, gallery, and a teacher-application form.</p>
+        <div class="stack"><span>React</span><span>HTML/CSS</span></div>
+      </a>
+      <a class="card" href="https://integrationminds.com" target="_blank" rel="noopener">
+        <div class="p-tag">IT TRAINING</div>
+        <h3>Integration Minds</h3>
+        <p>Site for an IBM Global Training Partner covering technical training, consulting, and hiring services.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span></div>
+      </a>
+      <a class="card" href="https://kktaxation.com" target="_blank" rel="noopener">
+        <div class="p-tag">FINANCE · SALEM</div>
+        <h3>KKTaxation</h3>
+        <p>Site for a CA firm offering accounting, GST, income tax, and ROC filing services.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span></div>
+      </a>
+      <!-- <a class="card" href="https://souvenirtech.com" target="_blank" rel="noopener">
+        <div class="p-tag">INDUSTRIAL</div>
+        <h3>Souvenir Technologies</h3>
+        <p>Corporate site for a timber-treatment plant manufacturer, showcasing equipment and 25+ years of projects.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span></div>
+      </a> -->
+      <a class="card" href="https://ramanicoolingsolutions.com" target="_blank" rel="noopener">
+        <div class="p-tag">REFRIGERATION</div>
+        <h3>Ramani Cooling Solutions</h3>
+        <p>Site for a refrigeration company — cold rooms, blast freezers, and AMC service listings.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact" style="border-bottom:1px solid var(--line);">
+    <div class="contact-panel reveal">
+      <h2>Let's build something</h2>
+      <p>Open to frontend and full-stack roles. The fastest way to reach me is email or phone.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:rpatilpriyanka98@gmail.com">✉ rpatilpriyanka98@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+918431350639">☎ +91 84313 50639</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/priyanka-r-patil-71a27223b" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/priyankarpatil" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="Priyanka_Patil_Resume.pdf" download>↓ Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Bangalore, India · Built with React-style components in plain HTML/CSS</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.15 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
