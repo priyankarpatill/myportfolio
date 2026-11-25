@@ -53,7 +53,7 @@
     display:flex; align-items:center; gap:8px;
   }
   .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); }
-  .navlinks{ display:flex; gap:32px; align-items:center; }
+  .navlinks{ display:flex; gap:28px; align-items:center; }
   .navlinks a{
     font-size:14px; color:var(--text-dim); font-weight:500;
     transition:color .2s;
@@ -144,26 +144,7 @@
     padding:6px 11px; border-radius:6px;
   }
 
-  /* ---------- PROJECTS ---------- */
-  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .card{
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
-    padding:22px; transition:transform .2s, border-color .2s;
-    display:block; text-decoration:none;
-  }
-  .card:hover{ transform:translateY(-3px); border-color:var(--accent); }
-  .card .p-tag{ font-family:var(--font-mono); font-size:11px; color:var(--amber); margin-bottom:10px; }
-  .card h3{ font-family:var(--font-display); font-size:17px; margin-bottom:8px; }
-  .card p{ font-size:13.5px; color:var(--text-dim); margin-bottom:14px; }
-  .stack{ display:flex; gap:6px; flex-wrap:wrap; }
-  .stack span{ font-family:var(--font-mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:3px 8px; border-radius:4px; }
-  .card.empty{
-    border-style:dashed; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; min-height:180px;
-  }
-  .card.empty .p-tag{ color:var(--text-dim); }
-  .card.empty p{ margin-bottom:0; }
-
-  /* ---------- EXPERIENCE (timeline = real sequence, ordering matters) ---------- */
+  /* ---------- EXPERIENCE ---------- */
   .timeline{ position:relative; padding-left:28px; }
   .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
   .t-item{ position:relative; padding-bottom:36px; }
@@ -178,6 +159,35 @@
   .t-item ul{ list-style:none; }
   .t-item li{ font-size:14px; color:var(--text-dim); margin-bottom:6px; padding-left:16px; position:relative; }
   .t-item li::before{ content:'→'; position:absolute; left:0; color:var(--teal); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:10px;
+    padding:22px; transition:transform .2s, border-color .2s, box-shadow .2s;
+    display:flex; flex-direction:column; text-decoration:none;
+    min-height:250px;
+  }
+  .card:hover{ transform:translateY(-4px); border-color:var(--accent); box-shadow:0 12px 30px rgba(0,0,0,0.25); }
+  .card .p-tag{ font-family:var(--font-mono); font-size:11px; color:var(--amber); margin-bottom:10px; }
+  .card h3{ font-family:var(--font-display); font-size:18px; margin-bottom:8px; }
+  .card p{ font-size:13.5px; color:var(--text-dim); margin-bottom:16px; }
+  .stack{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+  .stack span{ font-family:var(--font-mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:3px 8px; border-radius:4px; }
+
+  .live-link{
+    margin-top:auto;
+    display:inline-flex; align-items:center; gap:6px;
+    width:fit-content;
+    font-family:var(--font-mono); font-size:12px; font-weight:500;
+    color:var(--accent);
+    border:1px solid rgba(91,141,239,0.3);
+    background:var(--accent-soft);
+    padding:7px 10px; border-radius:6px;
+    transition:all .2s;
+  }
+  .live-link:hover{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .live-dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 7px var(--teal); }
 
   /* ---------- EDUCATION ---------- */
   .edu-item{ display:flex; justify-content:space-between; gap:20px; padding:16px 0; border-bottom:1px solid var(--line); }
@@ -228,6 +238,7 @@
     <div class="navlinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
     </div>
@@ -237,12 +248,13 @@
 
 <main class="wrap">
 
+  <!-- HERO -->
   <section class="hero" style="border-top:none;">
     <div>
       <div class="eyebrow">AVAILABLE FOR FRONTEND ROLES</div>
       <h1 class="name">Priyanka Patil</h1>
       <div class="role">Frontend Developer — React.js &amp; React Native</div>
-      <p class="desc">I build fast, responsive interfaces and turn designs into clean, reusable components. 8 live client websites shipped, plus cross-platform mobile apps and the APIs that power them.</p>
+      <p class="desc">Frontend developer with 2+ years building responsive web and cross-platform mobile apps. I integrate REST APIs, optimize performance, and turn designs into clean, reusable components — with 8 live client websites shipped.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#work">View my work</a>
         <a class="btn btn-ghost" href="#contact">Get in touch</a>
@@ -257,12 +269,12 @@
       <pre><span class="kw">function</span> <span class="fn">Developer</span>() {
   <span class="kw">const</span> name = <span class="str">"Priyanka Patil"</span>;
   <span class="kw">const</span> stack = [<span class="str">"React"</span>, <span class="str">"React Native"</span>,
-                 <span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"Node.js"</span>];
+                 <span class="str">"TypeScript"</span>, <span class="str">"Node.js"</span>];
   <span class="kw">const</span> location = <span class="str">"Bangalore, India"</span>;
 
   <span class="kw">return</span> (
     <span class="tag">&lt;Portfolio</span>
-      builds=<span class="str">{8}</span>
+      builds=<span class="str">{10}</span>
       status=<span class="str">"open to work"</span>
     <span class="tag">/&gt;</span>
   );
@@ -270,382 +282,312 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
     <div class="about-grid reveal">
       <div>
-        <p>I'm a full-stack developer based in Bangalore, focused on the frontend. Over the past two years I've moved from mobile app development in React Native to building complete web experiences — React on the front, Node.js and Java on the back, SQL underneath.</p>
-        <p>I like the details: the interface that responds instantly, the API that returns exactly what the component expects, the layout that holds up on a small screen. Currently building full-stack features at Shashwatha Groups.</p>
+        <p>I'm a frontend developer based in Bangalore with 2+ years of professional experience specializing in React.js, React Native, Java, and modern JavaScript. I build responsive web applications and cross-platform mobile apps with user-centric interfaces.</p>
+        <p>My focus: integrating RESTful APIs, optimizing application performance, and collaborating with cross-functional teams in agile environments. I'm experienced with Expo, TypeScript, and AI-assisted development tools like Claude and Cursor — and I care about clean, maintainable code.</p>
+        <p>Currently building full-stack features at Shashwatha Groups.</p>
       </div>
       <div class="stat-row">
+        <div class="stat"><div class="num">2+</div><div class="label">years of professional experience</div></div>
+        <div class="stat"><div class="num">10+</div><div class="label">projects built across web &amp; mobile</div></div>
         <div class="stat"><div class="num">8</div><div class="label">live client websites shipped</div></div>
-        <div class="stat"><div class="num">2+</div><div class="label">years across web &amp; mobile</div></div>
         <div class="stat"><div class="num">4</div><div class="label">languages spoken</div></div>
-        <!-- <div class="stat"><div class="num">2</div><div class="label">companies, growing fast</div></div> -->
       </div>
     </div>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills">
     <div class="section-head"><span class="section-num">02</span><h2>Skills</h2></div>
     <div class="skill-groups reveal">
       <div class="skill-group">
-        <div class="g-title">Web</div>
+        <div class="g-title">Programming Languages</div>
         <div class="chips">
-          <span class="chip">React.js</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
-          <span class="chip">JavaScript</span><span class="chip">RESTful APIs</span>
+          <span class="chip">JavaScript (ES6+)</span><span class="chip">TypeScript</span>
+          <span class="chip">Java</span><span class="chip">SQL / MySQL</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="g-title">Mobile</div>
+        <div class="g-title">Mobile Development</div>
         <div class="chips">
-          <span class="chip">React Native</span><span class="chip">Android Studio</span><span class="chip">Java</span>
+          <span class="chip">React Native</span><span class="chip">Expo</span>
+          <span class="chip">Android Studio</span><span class="chip">iOS &amp; Android builds</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="g-title">Backend &amp; Data</div>
+        <div class="g-title">Frontend Frameworks</div>
         <div class="chips">
-          <span class="chip">Node.js</span><span class="chip">SQL / MySQL</span><span class="chip">DBMS</span>
+          <span class="chip">React.js</span><span class="chip">Redux</span>
+          <span class="chip">Next.js</span><span class="chip">Hooks &amp; State Management</span>
         </div>
       </div>
       <div class="skill-group">
-        <div class="g-title">Tools</div>
+        <div class="g-title">Web Technologies</div>
+        <div class="chips">
+          <span class="chip">HTML5</span><span class="chip">CSS3</span>
+          <span class="chip">Bootstrap</span><span class="chip">Responsive Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">APIs &amp; Integration</div>
+        <div class="chips">
+          <span class="chip">RESTful APIs</span><span class="chip">JSON</span>
+          <span class="chip">API Testing</span><span class="chip">Backend Communication</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">Development Tools</div>
         <div class="chips">
           <span class="chip">Git</span><span class="chip">GitHub</span>
+          <span class="chip">npm / yarn</span><span class="chip">Webpack</span>
+          <span class="chip">Chrome DevTools</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">AI Development Tools</div>
+        <div class="chips">
+          <span class="chip">Claude</span><span class="chip">Cursor</span>
+          <span class="chip">AI-Assisted Development</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="g-title">Databases &amp; Soft Skills</div>
+        <div class="chips">
+          <span class="chip">SQL</span><span class="chip">MySQL</span>
+          <span class="chip">DBMS</span><span class="chip">Agile / Scrum</span>
+          <span class="chip">Team Collaboration</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head"><span class="section-num">03</span><h2>Experience</h2></div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="dates">02/2025 — Present</div>
+        <h3>Full Stack Developer</h3>
+        <div class="org">Shashwatha Groups · Bangalore, India</div>
+        <ul>
+          <li>Design and develop responsive, accessible user interfaces using HTML5, CSS3, JavaScript, and React.js following component-based architecture.</li>
+          <li>Build reusable UI components and front-end libraries to ensure consistency across web applications and accelerate development cycles.</li>
+          <li>Integrate RESTful APIs with efficient data fetching strategies, JSON/XML handling, and robust error handling.</li>
+          <li>Optimize application performance through code splitting, lazy loading, and bundle size reduction.</li>
+          <li>Collaborate with designers to translate wireframes and mockups into high-quality code.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="dates">06/2024 — 12/2024</div>
+        <h3>Trainee Software Engineer</h3>
+        <div class="org">Allreach Technologies · Bangalore, India</div>
+        <ul>
+          <li>Designed and developed cross-platform mobile applications using React Native and JavaScript for Android and iOS.</li>
+          <li>Collaborated with designers and backend developers to enhance app features and deliver exceptional user experiences.</li>
+          <li>Integrated RESTful APIs and third-party services including authentication, push notifications, and data synchronization.</li>
+          <li>Implemented responsive UI components with focus on intuitive navigation across different screen sizes.</li>
+          <li>Utilized Git for version control, code reviews, and collaborative development in an agile team environment.</li>
+          <li>Provided post-deployment maintenance, performance optimization, and bug fixes to enhance app stability.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
   <section id="work">
-  <div class="section-head">
-    <span class="section-num">03</span>
-    <h2>Featured Projects</h2>
-  </div>
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Featured Projects</h2>
+    </div>
 
-  <div class="project-grid reveal">
+    <div class="project-grid reveal">
 
-    <!-- MED ERP -->
-    <a class="card" href="#" target="_blank" rel="noopener">
-      <div class="p-tag">HEALTHCARE · ERP</div>
-      <h3>MED ERP</h3>
+      <!-- Medical ERP -->
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <div class="p-tag">HEALTHCARE · ERP</div>
+        <h3>Medical ERP</h3>
+        <p>ERP-style hospital management platform — patient registration, appointment scheduling, billing, pharmacy inventory, and doctor dashboards. Built reusable React components and role-based UI access control.</p>
+        <div class="stack">
+          <span>React Native</span><span>React.js</span><span>REST APIs</span><span>MySQL</span>
+        </div>
+         <span class="live-link">
+          <span class="live-dot"></span>
+          View Project ↗
+        </span>
+      </a>
 
-      <p>
-        Enterprise Resource Planning platform designed to manage employee,
-        HR, administrative, and business workflows through a centralized system.
-        Includes secure login, employee management, leave approvals, salary
-        slips, HR requests, and role-based dashboards.
-      </p>
+      <!-- Company ERP -->
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <div class="p-tag">BUSINESS · ERP</div>
+        <h3>Company ERP</h3>
+        <p>Modular ERP system covering HR, payroll, inventory, procurement, and finance. Built reusable React components, role-based dashboards, and workflow UI for purchase approvals.</p>
+        <div class="stack">
+          <span>React Native</span><span>React.js</span><span>REST APIs</span><span>JSON</span>
+        </div>
+         <span class="live-link">
+          <span class="live-dot"></span>
+          View Project ↗
+        </span>
+      </a>
 
-      <div class="stack">
-        <span>React.js</span>
-        <span>Node.js</span>
-        <span>REST APIs</span>
-        <span>MySQL</span>
+      <!-- AllCampus -->
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <div class="p-tag">EDTECH · REACT NATIVE</div>
+        <h3>AllCampus</h3>
+        <p>Student-focused job and internship platform — job listings, search and filters, student profiles, and application tracking. Built reusable React Native components and integrated RESTful APIs; optimized UI performance across devices.</p>
+        <div class="stack">
+          <span>React Native</span><span>Expo</span><span>TypeScript</span><span>REST APIs</span><span>Git</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Project ↗
+        </span>
+      </a>
+
+      <!-- E-Commerce -->
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <div class="p-tag">FULL-STACK · E-COMMERCE</div>
+        <h3>E-Commerce Website</h3>
+        <p>Full-stack online shopping platform featuring product catalog, search and filtering, cart management, user authentication, order placement, and payment gateway integration. JWT-based auth and admin dashboard.</p>
+        <div class="stack">
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span>
+        </div>
+      </a>
+
+      <!-- Cake Delight -->
+      <a class="card" href="https://cakedelightuae.com" target="_blank" rel="noopener">
+        <div class="p-tag">BAKERY · UAE</div>
+        <h3>Cake Delight</h3>
+        <p>Storefront for a handcrafted-cake bakery — menu, ordering information, and brand-focused responsive interface.</p>
+        <div class="stack">
+          <span>React</span><span>HTML/CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- Crystal Wings -->
+      <a class="card" href="https://crystalwingsdxb.com" target="_blank" rel="noopener">
+        <div class="p-tag">AVIATION · DUBAI</div>
+        <h3>Crystal Wings</h3>
+        <p>Private jet charter and aviation investment website featuring fleet, services, and enquiry/quote workflows.</p>
+        <div class="stack">
+          <span>React</span><span>HTML/CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- SSL Lighting -->
+      <a class="card" href="https://ssllightings.com" target="_blank" rel="noopener">
+        <div class="p-tag">LIGHTING</div>
+        <h3>SSL Lighting Solutions</h3>
+        <p>Responsive company website presenting lighting products and services for commercial customers.</p>
+        <div class="stack">
+          <span>HTML</span><span>CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- Kidz -->
+      <a class="card" href="https://kidznkidzzilla.com" target="_blank" rel="noopener">
+        <div class="p-tag">DAYCARE · BENGALURU</div>
+        <h3>Kidz 'n' Kidzzilla</h3>
+        <p>Playzone and daycare website with birthday packages, gallery, information pages, and teacher application functionality.</p>
+        <div class="stack">
+          <span>React</span><span>HTML/CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- Integration Minds -->
+      <a class="card" href="https://integrationminds.com" target="_blank" rel="noopener">
+        <div class="p-tag">IT TRAINING</div>
+        <h3>Integration Minds</h3>
+        <p>Corporate website covering technical training, consulting, and professional hiring services.</p>
+        <div class="stack">
+          <span>HTML</span><span>CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- KK Taxation -->
+      <a class="card" href="https://kktaxation.com" target="_blank" rel="noopener">
+        <div class="p-tag">FINANCE · SALEM</div>
+        <h3>KKTaxation</h3>
+        <p>Professional website for accounting, GST, income tax, and ROC filing services.</p>
+        <div class="stack">
+          <span>HTML</span><span>CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+      <!-- Ramani -->
+      <a class="card" href="https://ramanicoolingsolutions.com" target="_blank" rel="noopener">
+        <div class="p-tag">REFRIGERATION</div>
+        <h3>Ramani Cooling Solutions</h3>
+        <p>Responsive website showcasing cold rooms, blast freezers, refrigeration solutions, and AMC services.</p>
+        <div class="stack">
+          <span>HTML</span><span>CSS</span>
+        </div>
+        <span class="live-link">
+          <span class="live-dot"></span>
+          View Live Website ↗
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION
+  <section id="education">
+    <div class="section-head"><span class="section-num">05</span><h2>Education</h2></div>
+    <div class="reveal">
+      <div class="edu-item">
+        <div>
+          <h3>Bachelor of Engineering (B.E.) — Computer Science &amp; Engineering</h3>
+          <div class="sub">PES Institute of Technology and Management, Shivamogga · 75%</div>
+        </div>
+        <div class="when">2019 — 2023</div>
       </div>
-    </a>
-
-    <!-- COMPANY ERP -->
-    <a class="card" href="#" target="_blank" rel="noopener">
-      <div class="p-tag">BUSINESS · ERP PRODUCT</div>
-      <h3>Company ERP</h3>
-
-      <p>
-        Scalable business ERP product developed for companies to manage
-        employees and HR operations from a single platform. The product is
-        designed to be deployed across multiple organizations and includes
-        employee login, HR workflows, leave approvals, salary slips,
-        attendance, employee records, and role-based access.
-      </p>
-
-      <div class="stack">
-        <span>React.js</span>
-        <span>Node.js</span>
-        <span>REST APIs</span>
-        <span>MySQL</span>
+      <div class="edu-item">
+        <div>
+          <h3>Pre-University (12th) — Science &amp; Commerce</h3>
+          <div class="sub">Kumudvthi Science and Commerce PU College, Shikarpur · 80%</div>
+        </div>
+        <div class="when">2017 — 2019</div>
       </div>
-    </a>
-
-    <!-- Cake Delight -->
-    <!-- <a class="card" href="https://cakedelightuae.com" target="_blank" rel="noopener">
-      <div class="p-tag">BAKERY · UAE</div>
-      <h3>Cake Delight</h3>
-      <p>
-        Storefront for a handcrafted-cake bakery — menu, ordering information,
-        and brand-focused responsive interface.
-      </p>
-      <div class="stack">
-        <span>React</span>
-        <span>HTML/CSS</span>
+      <div class="edu-item">
+        <div>
+          <h3>Secondary Education (10th)</h3>
+          <div class="sub">Shri Jnyanakshi Vidyanekethna English Medium School, Hosahalli · 76%</div>
+        </div>
+        <div class="when">2016 — 2017</div>
       </div>
-    </a> -->
-    <a
-  class="card"
-  href="https://cakedelightuae.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">BAKERY · UAE</div>
+    </div>
+  </section> -->
 
-  <h3>Cake Delight</h3>
-
-  <p>
-    Storefront for a handcrafted-cake bakery — menu, ordering information,
-    and brand-focused responsive interface.
-  </p>
-
-  <div class="stack">
-    <span>React</span>
-    <span>HTML/CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-    <!-- Crystal Wings -->
-    <!-- <a class="card" href="https://crystalwingsdxb.com" target="_blank" rel="noopener">
-      <div class="p-tag">AVIATION · DUBAI</div>
-      <h3>Crystal Wings</h3>
-      <p>
-        Private jet charter and aviation investment website featuring fleet,
-        services, and enquiry/quote workflows.
-      </p>
-      <div class="stack">
-        <span>React</span>
-        <span>HTML/CSS</span>
-      </div>
-    </a> -->
-
-    <a
-  class="card"
-  href="https://crystalwingsdxb.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">AVIATION · DUBAI</div>
-
-  <h3>Crystal Wings</h3>
-
-  <p>
-    Private jet charter and aviation investment website featuring fleet,
-    services, and enquiry/quote workflows.
-  </p>
-
-  <div class="stack">
-    <span>React</span>
-    <span>HTML/CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-    <!-- SSL Lighting -->
-    <!-- <a class="card" href="https://ssllightings.com" target="_blank" rel="noopener">
-      <div class="p-tag">LIGHTING</div>
-      <h3>SSL Lighting Solutions</h3>
-      <p>
-        Responsive company website presenting lighting products and services
-        for commercial customers.
-      </p>
-      <div class="stack">
-        <span>HTML</span>
-        <span>CSS</span>
-      </div>
-    </a> -->
-    <a
-  class="card"
-  href="https://ssllightings.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">LIGHTING</div>
-
-  <h3>SSL Lighting Solutions</h3>
-
-  <p>
-    Responsive company website presenting lighting products and services
-    for commercial customers.
-  </p>
-
-  <div class="stack">
-    <span>HTML</span>
-    <span>CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-    <!-- Kidz -->
-    <!-- <a class="card" href="https://kidznkidzzilla.com" target="_blank" rel="noopener">
-      <div class="p-tag">DAYCARE · BENGALURU</div>
-      <h3>Kidz 'n' Kidzzilla</h3>
-      <p>
-        Playzone and daycare website with birthday packages, gallery,
-        information pages, and teacher application functionality.
-      </p>
-      <div class="stack">
-        <span>React</span>
-        <span>HTML/CSS</span>
-      </div>
-    </a> -->
-    <a
-  class="card"
-  href="https://kidznkidzzilla.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">DAYCARE · BENGALURU</div>
-
-  <h3>Kidz 'n' Kidzzilla</h3>
-
-  <p>
-    Playzone and daycare website with birthday packages, gallery,
-    information pages, and teacher application functionality.
-  </p>
-
-  <div class="stack">
-    <span>React</span>
-    <span>HTML/CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-    <!-- Integration Minds -->
-    <!-- <a class="card" href="https://integrationminds.com" target="_blank" rel="noopener">
-      <div class="p-tag">IT TRAINING</div>
-      <h3>Integration Minds</h3>
-      <p>
-        Corporate website covering technical training, consulting, and
-        professional hiring services.
-      </p>
-      <div class="stack">
-        <span>HTML</span>
-        <span>CSS</span>
-      </div>
-    </a> -->
-<a
-  class="card"
-  href="https://integrationminds.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">IT TRAINING</div>
-
-  <h3>Integration Minds</h3>
-
-  <p>
-    Corporate website covering technical training, consulting,
-    and professional hiring services.
-  </p>
-
-  <div class="stack">
-    <span>HTML</span>
-    <span>CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-
-    <!-- KK Taxation -->
-    <!-- <a class="card" href="https://kktaxation.com" target="_blank" rel="noopener">
-      <div class="p-tag">FINANCE · SALEM</div>
-      <h3>KKTaxation</h3>
-      <p>
-        Professional website for accounting, GST, income tax, and ROC
-        filing services.
-      </p>
-      <div class="stack">
-        <span>HTML</span>
-        <span>CSS</span>
-      </div>
-    </a> -->
-
-    <a
-  class="card"
-  href="https://kktaxation.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">FINANCE · SALEM</div>
-
-  <h3>KKTaxation</h3>
-
-  <p>
-    Professional website for accounting, GST, income tax,
-    and ROC filing services.
-  </p>
-
-  <div class="stack">
-    <span>HTML</span>
-    <span>CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-
-    <!-- Ramani -->
-    <!-- <a class="card" href="https://ramanicoolingsolutions.com" target="_blank" rel="noopener">
-      <div class="p-tag">REFRIGERATION</div>
-      <h3>Ramani Cooling Solutions</h3>
-      <p>
-        Responsive website showcasing cold rooms, blast freezers,
-        refrigeration solutions, and AMC services.
-      </p>
-      <div class="stack">
-        <span>HTML</span>
-        <span>CSS</span>
-      </div>
-    </a> -->
-    <a
-  class="card"
-  href="https://ramanicoolingsolutions.com"
-  target="_blank"
-  rel="noopener"
->
-  <div class="p-tag">REFRIGERATION</div>
-
-  <h3>Ramani Cooling Solutions</h3>
-
-  <p>
-    Responsive website showcasing cold rooms, blast freezers,
-    refrigeration solutions, and AMC services.
-  </p>
-
-  <div class="stack">
-    <span>HTML</span>
-    <span>CSS</span>
-  </div>
-
-  <span class="live-link">
-    <span class="live-dot"></span>
-    View Live Website ↗
-  </span>
-</a>
-
-
-  </div>
-</section>
+  <!-- CONTACT -->
   <section id="contact" style="border-bottom:1px solid var(--line);">
     <div class="contact-panel reveal">
       <h2>Let's build something</h2>
@@ -654,7 +596,7 @@
         <a class="btn btn-primary" href="mailto:rpatilpriyanka98@gmail.com">✉ rpatilpriyanka98@gmail.com</a>
         <a class="btn btn-ghost" href="tel:+918431350639">☎ +91 84313 50639</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/priyanka-r-patil-71a27223b" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn-ghost" href="https://github.com/priyankarpatil" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://github.com/priyankapatil" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn-ghost" href="Priyanka_Patil_Resume.pdf" download>↓ Download Resume</a>
       </div>
     </div>
@@ -673,81 +615,3 @@
 
 </body>
 </html>
-
-
-
-
-<style>
-  .card {
-  position: relative;
-  background: var(--bg-panel);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 22px;
-  transition: transform .2s, border-color .2s, box-shadow .2s;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  min-height: 250px;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-.card h3 {
-  font-family: var(--font-display);
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-.card p {
-  font-size: 13.5px;
-  color: var(--text-dim);
-  margin-bottom: 16px;
-}
-
-.stack {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-
-.live-link {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  width: fit-content;
-
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent);
-
-  border: 1px solid rgba(91, 141, 239, 0.3);
-  background: var(--accent-soft);
-
-  padding: 7px 10px;
-  border-radius: 6px;
-
-  transition: all .2s;
-}
-
-.live-link:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 7px var(--teal);
-}
-</style>
